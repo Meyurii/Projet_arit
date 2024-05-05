@@ -6,11 +6,29 @@ class Grille_tournante:
     def __init__(self, phrase, n): #ici tu initialsé des variables quand tu feras un self.nomdetavariable elle se changera directement
         self.phrase = phrase
         self.n = n
-        self.cle = []
+        self.cle = [
+            [0,0,1,1,0,0,0,0,0,0,0,0,1,0,0,0,0],
+            [1,0,1,1,0,0,1,0,0,1,0,0,0,0,0,1,0],
+            [1,0,0,0,0,0,1,0,0,1,1,0,0,1,0,0,0],
+            [0,1,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0],
+            [0,0,0,1,0,0,1,0,0,0,0,0,1,0,0,0,0],
+            [0,0,0,0,1,1,0,1,1,0,0,0,1,0,0,1,0],
+            [0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,1,1,0,1,1,0,0,0,1,0,0,0],
+            [1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,1,0],
+            [0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,1],
+            [1,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0],
+            [0,0,1,0,0,0,0,0,0,0,1,0,0,1,0,1,1],
+            [0,0,1,1,0,0,1,1,0,1,0,0,0,0,1,0,0],
+            [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,1,0,0,1,1,0,0,0,0,1,0,0],
+            [0,0,1,0,1,0,0,0,0,0,0,0,1,0,0,0,0],
+            [1,0,0,1,0,0,1,0,0,1,0,1,1,0,0,1,0]
+        ]
         self.cle90 = []
         self.cle180 = []
         self.cle270 = []
-        self.crypte = []
+        self.crypte = ["bfcobeeacduomtauy","peutasesarenpirpd","rtoreqogrgrawaiui","rmllemsdiosiknmil","tlmgbeietrwashote", "sunbancardintgobr", "eeqcnauupinetsyac", "ilfonseeitdeoabud", "psshlkyr ppelcuiv", "ieailoyewlshysyba", "cwdcmeujcixmysaec", "ulmnfwsiasuanlvats", "seedaakniortptwarb", "bxlioordsuztycewu", "lwsioelldgekdeelnb", "bjtiojloeqyctwhta", "hvvetswoxoxrlheda"]
         self.decrypte = []
         self.message = []
 
@@ -176,6 +194,11 @@ class Grille_tournante:
                 for y in range(len(separe)) :
                     self.cle[x][y] = int(separe[x][y])
 
+    def afficher_decoder(self):
+        temp = str()
+        for x in self.decrypte:
+            temp += x
+        print(temp)
 
 def print_tab(tab) : #mise en forme en tableau
     for x in tab :
@@ -183,9 +206,9 @@ def print_tab(tab) : #mise en forme en tableau
 
 def final(): #ici c'est la fonction final
     while True :
-        grille_tournante = Grille_tournante("phrase",17) #ici on inisialise la class
-        grille_tournante.creation_cle() #appel des fonction avec le nom de la variable de class.lenomdelafonction
-        grille_tournante.creuser_tableau()
+        grille_tournante = Grille_tournante("bfcobeeacduomtauypeutasesarenpirpdrtoreqogrgrawaiuirmllemsdiosiknmiltlmgbeietrwashotesunbancardintgobreeqcnauupinetsyacilfonseeitdeoabudpsshlkyrppelcuivieailoyewlshysybacwdcmeujcixmysaeculmnfwsiasuanlvatseedaakniortptwarbxlioordsuztycewulwsioelldgekdeelnbjtiojloeqyctwhtahvvetswoxoxrlheda",17) #ici on inisialise la class
+        #grille_tournante.creation_cle() #appel des fonction avec le nom de la variable de class.lenomdelafonction
+        #grille_tournante.creuser_tableau()
         etat1 = grille_tournante.cle #ici on crée les "etats" (il y en a 4 en tout 1 au debut puis 1 autre pour chaque tour) elle prenne les valeurs de la grille
         etat2 = grille_tournante.tourner_90_degres_horraire(etat1)
         etat3 = grille_tournante.tourner_90_degres_horraire(etat2) 
@@ -199,7 +222,7 @@ def final(): #ici c'est la fonction final
             grille_tournante.plusieurs_tableaux()
             for x in grille_tournante.message :
                 grille_tournante.phrase = x
-                print_tab(grille_tournante.crypte_texte())
+                #print_tab(grille_tournante.crypte_texte())
                 print("état 1:")
                 print_tab(grille_tournante.cle)
                 print("")
@@ -214,9 +237,10 @@ def final(): #ici c'est la fonction final
                 print("decrypté :")
                 grille_tournante.decoder_message()
                 print(grille_tournante.decrypte)
-                grille_tournante.save_cle()
-                grille_tournante.load_cle()
-                print(grille_tournante.message)
+                #grille_tournante.save_cle()
+                #grille_tournante.load_cle()
+                #print(grille_tournante.decrypte)
+                grille_tournante.afficher_decoder()
             break
 
 
@@ -225,3 +249,4 @@ final() #ici on oublie pas d'appeler la foncion
 #c'est peut-être pas le plus opti mais ca marche
 
 
+# computer programming is an art because it applies accumulated knowledge to the world beacause it require skill and ingenuity and espcially beacause it produces objects of beauty a programmer whose ubconsiously views himself as an artits will enjoy what he does and will do it better.
